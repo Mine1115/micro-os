@@ -180,7 +180,7 @@ let mineu_sleted = 1
 basic.forever(function () {
     let in_game = 0
     while (in_game == 0) {
-        while (mineu_sleted == 1) {
+        if (mineu_sleted == 1) {
             basic.showLeds(`
                 # . # . #
                 . # # # .
@@ -188,18 +188,39 @@ basic.forever(function () {
                 . # # # .
                 # . # . #
                 `)
-            if (input.buttonIsPressed(Button.B)) {
-                mineu_sleted = 2
+            while (mineu_sleted == 1) {
+                if (input.buttonIsPressed(Button.B)) {
+                    mineu_sleted = 2
+                }
             }
         }
-        while (mineu_sleted == 2) {
+        if (mineu_sleted == 2) {
             basic.showLeds(`
-                # . # . #
+                . . . . .
                 . # # # .
-                # # . # #
                 . # # # .
-                # . # . #
+                . # # # .
+                . . . . .
                 `)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                # # # # #
+                . . . . .
+                . . . . .
+                `)
+            basic.showLeds(`
+                . . . # .
+                # . # . .
+                . # . . .
+                # . # . .
+                . . . # .
+                `)
+            while (mineu_sleted == 2) {
+                if (input.buttonIsPressed(Button.A)) {
+                    mineu_sleted = 1
+                }
+            }
         }
     }
 })
